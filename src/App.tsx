@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Box, CircularProgress } from '@mui/material';
 
-function App() {
+import { ReposList, Loader, ErrorComponent } from "@components/";
+import { generalSelectors, generalActions } from "@store/";
+
+export const App: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector(generalSelectors.selectLoadingState);
+  const page = useSelector(generalSelectors.selectCurrentPage);
+  const error: any = useSelector(generalSelectors.selectError);
+
+  const initDataFetch = () => {
+    dispatch(generalActions.fetchReposData({
+      page: page,
+      itemsPerPage: 10
+    }));
+  }
+
+  useEffect(() => {
+    initDataFetch();
+  }, []);
+
+  if (isLoading) {
+    return <Loader />
+  }
+
+  if (error) {
+    return <ErrorComponent errorData={error} />
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box sx={{ padding: 4 }}>
+      <ReposList />
+    </Box>
   );
-}
-
-export default App;
+};
