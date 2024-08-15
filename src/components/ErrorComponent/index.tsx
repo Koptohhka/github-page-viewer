@@ -1,8 +1,9 @@
 import React from "react";
-import { Box, Typography, List, ListItem, Link, Pagination, CircularProgress, Alert } from '@mui/material';
+import { Box, Alert } from '@mui/material';
+import { FetchReposDataType } from "../../types";
 
 type Props = {
-    errorData: any;
+    errorData: FetchReposDataType;
 }
 
 export const ErrorComponent: React.FC<Props> = ({ errorData }) => {

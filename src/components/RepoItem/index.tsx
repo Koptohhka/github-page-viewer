@@ -1,8 +1,10 @@
 import React from "react";
 import { Typography, ListItem, Link } from '@mui/material';
 
+import { RepositoryItemType } from "../../types";
+
 type Props = {
-    repoData: any;
+    repoData: RepositoryItemType;
 }
 
 export const RepoItem: React.FC<Props> = ({ repoData }) => {

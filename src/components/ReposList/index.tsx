@@ -1,12 +1,12 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Typography, CircularProgress, Pagination, List, ListItem, Link } from '@mui/material';
+import { Box, Typography, Pagination, List } from '@mui/material';
 
 import { RepoItem } from "@components/";
-import { generalSelectors, generalActions } from "@store/";
+import { generalSelectors, generalActions, AppDispatchType, fetchReposData } from "@store/";
 
 export const ReposList: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatchType>();
 
     const repositoriesData = useSelector(generalSelectors.selectReposData);
     const page = useSelector(generalSelectors.selectCurrentPage);
@@ -22,7 +22,7 @@ export const ReposList: React.FC = () => {
 
     const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
         dispatch(generalActions.setCurrentPage(value));
-        dispatch(generalActions.fetchReposData({
+        dispatch(fetchReposData({
             page: value,
             itemsPerPage: itemsPerPage
         }));
@@ -35,7 +35,7 @@ export const ReposList: React.FC = () => {
     return (
         <Box sx={{
             padding: {
-                xs: 0,
+                xs: 1,
                 sm: 3,
                 md: 4,
                 lg: 4,

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, CircularProgress } from '@mui/material';
 
 import { ReposList, Loader, ErrorComponent } from "@components/";
-import { generalSelectors, generalActions, fetchReposData } from "@store/";
+import { generalSelectors, fetchReposData, AppDispatchType } from "@store/";
 
 export const App: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatchType>();
 
   const isLoading = useSelector(generalSelectors.selectLoadingState);
   const page = useSelector(generalSelectors.selectCurrentPage);
@@ -32,6 +31,6 @@ export const App: React.FC = () => {
   }
 
   return (
-      <ReposList />
+    <ReposList />
   );
 };

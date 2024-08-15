@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, SerializedError } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchReposData } from "./generalSlice.thunks";
 import { FetchReposDataType, GeneralSliceStateType, RootStateType } from "../../types";
 
@@ -36,11 +36,13 @@ const generalSlice = createSlice({
 
 				state.cache[action.payload.cacheKey] = action.payload.result;
 			})
-			.addCase(fetchReposData.rejected, (state, action: PayloadAction<any>) => {
+			.addCase(fetchReposData.rejected, (state, action) => {
 				state.loading = false;
 				state.reposData = null;
 
-				state.error = action.payload;
+				if (action.payload) {
+					state.error = action.payload;
+				}
 			});
 	},
 });
@@ -53,5 +55,5 @@ export const generalSelectors = {
 };
 
 
-export const generalActions = { ...generalSlice.actions, fetchReposData };
+export const generalActions = { ...generalSlice.actions };
 export const general = generalSlice.reducer;
