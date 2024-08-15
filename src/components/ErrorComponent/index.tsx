@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Alert } from '@mui/material';
-import { FetchReposDataType } from "../../types";
+import { FetchReposDataType } from "@typings/";
 
 type Props = {
     errorData: FetchReposDataType;

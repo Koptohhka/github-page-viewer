@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, ListItem, Link } from '@mui/material';
 
-import { RepositoryItemType } from "../../types";
+import { RepositoryItemType } from "@typings/";
 
 type Props = {
     repoData: RepositoryItemType;

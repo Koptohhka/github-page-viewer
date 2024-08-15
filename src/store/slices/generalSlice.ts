@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchReposData } from "./generalSlice.thunks";
-import { FetchReposDataType, GeneralSliceStateType, RootStateType } from "../../types";
+import { FetchReposDataType, GeneralSliceStateType, RootStateType } from "@typings/";
 
 const initialState: GeneralSliceStateType = {
 	loading: true,

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { FetchReposDataType, RootStateType } from "../../types";
+import { FetchReposDataType, RootStateType } from "@typings/";
 
 type FetchReposDataParams = {
     page: number;

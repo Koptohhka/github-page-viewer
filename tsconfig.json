@@ -24,7 +24,7 @@
       "@components/": ["./components/"],
       "@services/": ["./services/"],
       "@store/": ["./store/"],
-      "@types/": ["./types/"],
+      "@typings/": ["./typings/"],
     }
   },
   "include": [
