@@ -1,4 +1,4 @@
-import {FetchReposDataType  } from "./apiData";
+import { FetchReposDataType } from "./apiData";
 
 export type GeneralSliceStateType = {
 	loading: boolean;
