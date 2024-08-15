@@ -23,6 +23,9 @@ const generalSlice = createSlice({
 		setCurrentPage(state, action: PayloadAction<number>) {
 			state.currentPage = action.payload;
 		},
+		setError(state, action: PayloadAction<null>) {
+			state.error = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder

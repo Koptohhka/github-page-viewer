@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ReposList, Loader, ErrorComponent } from "@components/";
 import { generalSelectors, fetchReposData, AppDispatchType } from "@store/";
 
-export const App: React.FC = () => {
+export const LoadGithub: React.FC = () => {
   const dispatch = useDispatch<AppDispatchType>();
 
   const isLoading = useSelector(generalSelectors.selectLoadingState);
