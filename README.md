@@ -14,7 +14,7 @@ This project is a web application that allows users to browse the most popular T
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/github-popular-projects.git
+   git clone https://github.com/Koptohhka/github-page-viewer
    cd github-popular-projects
 
 2. Install dependencies:
