@@ -7,6 +7,6 @@ const appReducer = combineReducers({
 });
 
 
-export const store: EnhancedStore<any> = configureStore({
+export const store = configureStore({
 	reducer: appReducer,
 });

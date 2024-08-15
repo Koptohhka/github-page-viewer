@@ -1,16 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, SerializedError } from '@reduxjs/toolkit';
 import { fetchReposData } from "./generalSlice.thunks";
-import { FetchReposDataType } from "../../types";
+import { FetchReposDataType, GeneralSliceStateType, RootStateType } from "../../types";
 
-type GeneralSlicestateType = {
-	loading: boolean;
-	reposData: null | FetchReposDataType;
-	currentPage: number;
-	error: null | FetchReposDataType;
-	cache: any;
-}
-
-const initialState: GeneralSlicestateType = {
+const initialState: GeneralSliceStateType = {
 	loading: true,
 	reposData: null,
 	currentPage: 1,
@@ -38,7 +30,7 @@ const generalSlice = createSlice({
 				state.loading = true;
 				state.error = null;
 			})
-			.addCase(fetchReposData.fulfilled, (state, action: PayloadAction<any>) => {
+			.addCase(fetchReposData.fulfilled, (state, action: PayloadAction<{ result: FetchReposDataType; cacheKey: string; }>) => {
 				state.loading = false;
 				state.reposData = action.payload.result;
 
@@ -54,12 +46,12 @@ const generalSlice = createSlice({
 });
 
 export const generalSelectors = {
-	selectError: (state: any) => state.general.error,
-	selectReposData: (state: any) => state.general.reposData,
-	selectLoadingState: (state: any) => state.general.loading,
-	selectCurrentPage: (state: any) => state.general.currentPage,
+	selectError: (state: RootStateType) => state.general.error,
+	selectReposData: (state: RootStateType) => state.general.reposData,
+	selectLoadingState: (state: RootStateType) => state.general.loading,
+	selectCurrentPage: (state: RootStateType) => state.general.currentPage,
 };
 
 
-export const generalActions: any = { ...generalSlice.actions, fetchReposData };
+export const generalActions = { ...generalSlice.actions, fetchReposData };
 export const general = generalSlice.reducer;

@@ -13,7 +13,7 @@ export const ReposList: React.FC = () => {
 
     const itemsPerPage = useMemo(() => 10, []);
     const totalPages = useMemo(() => {
-        if (repositoriesData) {
+        if (repositoriesData && repositoriesData.total_count) {
             return Math.ceil(repositoriesData.total_count / itemsPerPage)
         }
 
@@ -28,21 +28,37 @@ export const ReposList: React.FC = () => {
         }));
     };
 
-    if (!repositoriesData) {
+    if (!repositoriesData || !repositoriesData.items) {
         return null;
     }
 
     return (
-        <div>
-
+        <Box sx={{
+            padding: {
+                xs: 0,
+                sm: 3,
+                md: 4,
+                lg: 4,
+            },
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+            maxHeight: "100vh",
+            boxSizing: "border-box",
+            overflow: "hidden"
+        }} >
             <Typography variant="h4" component="h1" gutterBottom>
                 Most Popular TypeScript Projects on GitHub
             </Typography>
-
-            <List>
-                {repositoriesData.items.map((repoData: any) => (<RepoItem repoData={repoData} />))}
+            <List sx={{
+                overflow: "auto",
+                flexGrow: "10",
+                minHeight: "100%"
+            }}>
+                {repositoriesData.items.map((repoData) => (
+                    <RepoItem key={repoData.id} repoData={repoData} />
+                ))}
             </List>
-
             <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}>
                 <Pagination
                     count={totalPages}
@@ -51,6 +67,6 @@ export const ReposList: React.FC = () => {
                     color="primary"
                 />
             </Box>
-        </div>
+        </Box>
     );
 }

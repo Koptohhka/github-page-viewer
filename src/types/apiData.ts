@@ -7,21 +7,6 @@ export type FetchReposDataType = {
     message?: string;
 };
 
-// export interface FetchReposDataType {
-//     total_count?: number;
-//     incomplete_results?: boolean;
-//     items?: RepositoryItemType[];
-//     documentation_url?: string;
-//     status?: string;
-//     message?: string;
-// }
-
-export interface FetchReposDataErrorType {
-    documentation_url: string;
-    status: string;
-    message: string;
-}
-
 export interface RepositoryItemType {
     id: number;
     node_id: string;

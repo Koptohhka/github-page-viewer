@@ -3,17 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Box, CircularProgress } from '@mui/material';
 
 import { ReposList, Loader, ErrorComponent } from "@components/";
-import { generalSelectors, generalActions } from "@store/";
+import { generalSelectors, generalActions, fetchReposData } from "@store/";
 
 export const App: React.FC = () => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(generalSelectors.selectLoadingState);
   const page = useSelector(generalSelectors.selectCurrentPage);
-  const error: any = useSelector(generalSelectors.selectError);
+  const error = useSelector(generalSelectors.selectError);
 
   const initDataFetch = () => {
-    dispatch(generalActions.fetchReposData({
+    dispatch(fetchReposData({
       page: page,
       itemsPerPage: 10
     }));
@@ -32,8 +32,6 @@ export const App: React.FC = () => {
   }
 
   return (
-    <Box sx={{ padding: 4 }}>
       <ReposList />
-    </Box>
   );
 };
